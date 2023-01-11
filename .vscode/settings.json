@@ -41,6 +41,7 @@
         "unordered_map": "c",
         "utility": "c",
         "variant": "c",
-        "vector": "c"
+        "vector": "c",
+        "chrono": "c"
     }
 }
