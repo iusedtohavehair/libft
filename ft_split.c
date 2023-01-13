@@ -60,7 +60,7 @@ char **ft_split(char const *s, char c)
     return (array);
 }
 
-int main()
+/* int main()
 {
     char sep[] = "-";
     char str[] = "Bonjour-Louis";
@@ -68,4 +68,4 @@ int main()
 
     for (size_t i = 0; i < ft_strslen(str, sep[0]) + 1; i++)
         printf("%s\n", array[i]);
-}
+} */

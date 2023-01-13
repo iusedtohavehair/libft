@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdio.h>
 
 int ft_strlen(char *str)
 {
@@ -12,39 +13,44 @@ int ft_strlen(char *str)
     return (length);
 }
 
-size_t  ft_strlcat(char *dst, const char *src, size_t size) 
+size_t ft_strlcat(char *dst, const char *src, size_t size)
 {
     int index;
+    int src_index;
     int len;
+    int max;
 
     len = ft_strlen(dst);
     index = len;
+    src_index = 0;
+    max = size - len;
 
-    while (size--)
+    if (max <= 0)
+        return (ft_strlen(dst) + 1);
+
+    while (--max && src[src_index] != '\0')
     {
-        /* code */
+        dst[index] = src[src_index];
+        index++;
+        src_index++;
     }
-    
+    dst[index] = '\0';
 
-
-
-
-    return(size);
+    return (size);
 }
 
-// #include <string.h>
-// #include <stdio.h>
-// int main()
-// {
-//     // char src[] = "asd";
-//     // char dst[] = "Puisse manger michaud";
+#include <string.h>
+int main()
+{
+    char src[] = " craque";
+    char dst[] = "Puage de";
 
-//     char src2[] = "age";
-//     char dst2[25] = "Pu";
+    char src2[] = " craque";
+    char dst2[30] = "Puage de";
 
-//     //ft_strlcat(dst, src, 3);
-//     strlcat(dst2, src2, 3);
+    int flen = ft_strlcat(dst, src, 7);
+    int slen = strlcat(dst2, src2, 7);
 
-//     //printf("%s\n", dst);
-//     printf("%s\n", dst2);
-// }
+    printf("%s, %d\n", dst, flen);
+    printf("%s, %d\n", dst2, slen);
+}
