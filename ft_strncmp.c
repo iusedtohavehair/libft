@@ -1,27 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:44:57 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:45:07 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int i;
-	unsigned int n_int;
+	size_t	index;
 
-	n_int = (unsigned int)n;
-	i = 0;
-	while ((s1[i] != '\0' || s2[i] != '\0') && i < n_int)
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		else
-			i++;
-	}
-	return (0);
+	if (!s1 || !s2 || n == 0)
+		return (0);
+	index = 0;
+	while ((s1[index] || s2[index]) && index < n - 1 && s1[index] == s2[index])
+		index++;
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
 }
-/*
-int	main(void)
-{
-	char	a[] = "bon";
-	char	b[] = "bonjaur";
-	printf("%d", ft_strncmp(b, a, 5));
-} */

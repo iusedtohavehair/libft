@@ -1,25 +1,18 @@
-int ft_isalpha(int ch)
-{
-    return ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'));
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:08:25 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:29:47 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_isdigit(int ch)
-{
-    return ((ch >= '0' && ch <= '9'));
-}
+#include "libft.h"
 
-// checks if ch is alpha or is num.
-int ft_isalnum(int ch)
+int	ft_isalnum(int ch)
 {
-    return (ft_isalpha(ch) || ft_isdigit(ch));
+	return (ft_isalpha(ch) || ft_isdigit(ch));
 }
-
-/*
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-    char str = '$';
-    printf("ft_isalpha: %d\n", ft_isalnum(str));
-    printf("isalpha: %d\n", isalnum(str));
-} */

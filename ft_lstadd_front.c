@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 14:47:56 by cchouina          #+#    #+#             */
-/*   Updated: 2023/01/17 14:48:25 by cchouina         ###   ########.fr       */
+/*   Created: 2023/01/17 11:39:15 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:39:22 by cchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int	index;
-
-	index = 0;
-	if (!s)
-		return (NULL);
-	while (s[index])
-	{
-		if (s[index] == (char)c)
-			return ((char *)s + index);
-		index++;
-	}
-	if (s[index] == (char)c)
-		return ((char *)s + index);
-	return (NULL);
+	new->next = *lst;
+	*lst = new;
 }

@@ -1,0 +1,4 @@
+/test*
+/objects/
+/makeall.sh
+/libft.a

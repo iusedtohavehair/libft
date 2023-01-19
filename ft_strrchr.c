@@ -1,47 +1,36 @@
-int ft_strlen(const char *str)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: christophechouinard <christophechouinar    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 15:00:44 by christophec       #+#    #+#             */
+/*   Updated: 2023/01/19 15:01:52 by christophec      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
 {
-    int length;
-    length = 0;
+	size_t	len;
+	char	*ptr;
 
-    while (str[length])
-        length++;
-
-    return (length);
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	ptr = (char *)s;
+	while (len > 0)
+	{
+		if ((char)c == s[len])
+		{
+			ptr += len;
+			return (ptr);
+		}
+		len--;
+	}
+	if (s[len] == (char)c)
+		return (ptr + len);
+	return (NULL);
 }
-
-#include <stdlib.h>
-#include <stdio.h>
-char *ft_strchr(const char *s, int c)
-{
-    
-    int len;
-    char *ptr;
-    
-    len = ft_strlen(s) + 1;
-    ptr = (char *)s;
-
-    while (len--)
-    {
-        if (c == s[len])
-        {
-            ptr += len; 
-            return (ptr);
-        }
-    }
-    return (NULL);
-}
-
-/* #include <string.h>
-#include <stdio.h>
-int main()
-{
-    const char str[] = "Guy Jodoin";
-    char ch[] = "g";
-    char *ptr = ft_strchr(str, ch[0]);
-    printf("%s\n", ptr);
-
-    const char str2[] = "Guy Jodoin";
-    char ch2[] = "g";
-    char *ptr2 = strrchr(str2, ch2[0]);
-    printf("%s\n", ptr2);
-} */

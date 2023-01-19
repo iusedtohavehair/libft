@@ -1,56 +1,42 @@
-#include <stddef.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: christophechouinard <christophechouinar    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 14:49:28 by christophec       #+#    #+#             */
+/*   Updated: 2023/01/19 14:51:36 by christophec      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_strlen(char *str)
+#include "libft.h"
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-    int length;
+	size_t	index;
+	size_t	src_index;
+	size_t	src_len;
+	size_t	dst_len;
 
-    length = 0;
-
-    while (str[length])
-        length++;
-
-    return (length);
-}
-
-size_t ft_strlcat(char *dst, const char *src, size_t size)
-{
-    int index;
-    int src_index;
-    int len;
-    int max;
-
-    len = ft_strlen(dst);
-    index = len;
-    src_index = 0;
-    max = size - len;
-
-    if (max <= 0)
-        return (ft_strlen(dst) + 1);
-
-    while (--max && src[src_index] != '\0')
-    {
-        dst[index] = src[src_index];
-        index++;
-        src_index++;
-    }
-    dst[index] = '\0';
-
-    return (size);
-}
-
-#include <string.h>
-int main()
-{
-    char src[] = " craque";
-    char dst[] = "Puage de";
-
-    char src2[] = " craque";
-    char dst2[30] = "Puage de";
-
-    int flen = ft_strlcat(dst, src, 7);
-    int slen = strlcat(dst2, src2, 7);
-
-    printf("%s, %d\n", dst, flen);
-    printf("%s, %d\n", dst2, slen);
+	if (!src || !dst)
+		return (0);
+	if (dst == NULL && size == 0)
+		return (ft_strlen(src));
+	src_index = 0;
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	index = dst_len;
+	if (size == 0 || size < dst_len)
+		return (src_len + size);
+	else
+	{
+		while (src[src_index] && (dst_len + src_index) < size)
+			dst[index++] = src[src_index++];
+		if ((dst_len + src_index) == size && dst_len < size)
+			dst[--index] = '\0';
+		else
+			dst[index] = '\0';
+		return (src_len + dst_len);
+	}
 }

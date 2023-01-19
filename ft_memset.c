@@ -1,26 +1,25 @@
-#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:51:03 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:51:18 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void *ft_memset(void *s, int c, size_t n)
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-    unsigned char *ptr;
+	unsigned char	*ptr;
 
-    ptr = (unsigned char *)s;
-    while (n--)
-        *ptr++ = (unsigned char)c;
-    return (s);
+	if (!b)
+		return (NULL);
+	ptr = (unsigned char *)b;
+	while (len--)
+		*ptr++ = (unsigned char)c;
+	return (b);
 }
-/*
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-int main()
-{
-    char ch = '$';
-    char str[] = "Bonjour";
-    char str2[] = "Bonjour";
-    ft_memset(str, ch, 5);
-    memset(str2, ch, 5);
-
-    printf("FT: %s\n", str);
-    printf("OG: %s\n", str2);
-} */

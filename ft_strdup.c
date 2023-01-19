@@ -1,55 +1,28 @@
-#include <stdlib.h>
-int ft_strlen(const char *str)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 14:48:41 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 14:48:48 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
 {
-    int length;
+	int		len;
+	char	*ptr_malloc;
 
-    length = 0;
-
-    while (str[length])
-        length++;
-
-    return (length);
+	if (!s1)
+		return (NULL);
+	len = ft_strlen(s1) + 1;
+	ptr_malloc = (char *)malloc(sizeof(char) * len);
+	if (!ptr_malloc)
+		return (NULL);
+	ft_strlcpy(ptr_malloc, s1, len);
+	return (ptr_malloc);
 }
-
-char *ft_strcpy(char *dst, const char *src)
-{
-    int index;
-
-    index = 0;
-
-    while (src[index])
-    {
-        dst[index] = src[index];
-        index++;
-    }
-    dst[index] = src[index];
-    return(dst);
-}
-
-char    *ft_strdup(const char *s1)
-{
-    int len;
-    char *ptr_malloc;
-
-    len = ft_strlen(s1) + 1;
-    ptr_malloc = (char *) malloc(sizeof(char *) * len);
-    if (!ptr_malloc)
-        return(NULL);
-    ft_strcpy(ptr_malloc, s1);
-    return(ptr_malloc);
-}
-
-
-// #include <stdio.h>
-// #include <string.h>
-// int main()
-// {
-//     char *s1 = "Guildor Roy";
-//     char *s2 = ft_strdup(s1);
-//     char *OGs2 = strdup(s1);
-
-//     printf("%s\n", s2);
-//     printf("%s\n", OGs2);
-
-//     free(s2);
-// }

@@ -1,71 +1,87 @@
-#include <stdio.h>
-#include <stdlib.h>
-int ft_strslen(char const *s, char c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:57:17 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 14:47:42 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static int	ft_strslen(char const *s, char c)
 {
-    int index;
-    int words;
+	int	index;
+	int	words;
 
-    index = 0;
-    words = 1;
-
-    if (s[0] == '\0')
-        return (0);
-    while (s[index] != '\0')
-    {
-        if (s[index] == c)
-            words++;
-        index++;
-    }
-    return (words);
+	if (!s)
+		return (0);
+	index = 0;
+	words = 0;
+	while (s[index])
+	{
+		while (s[index] && s[index] == c)
+			index++;
+		if (s[index])
+			words++;
+		while (s[index] != c && s[index])
+			index++;
+	}
+	return (words);
 }
 
-int word_len(const char *s, int s_index, char c)
+char	**clean_array(char **to_clean)
 {
-    int count;
-    count = 0;
-    while (s[s_index] != c && s[s_index] != '\0')
-    {
-        count++;
-        s_index++;
-    }
-    return (count + 1);
+	int	index;
+
+	index = 0;
+	while (to_clean[index])
+	{
+		free(to_clean[index]);
+		index++;
+	}
+	free(to_clean);
+	return (NULL);
 }
 
-char **ft_split(char const *s, char c)
+char	**create_array(char *s, char c, char **array)
 {
-    int words;
-    char **array;
-    int s_index;
-    int array_index;
-    int sub_index;
+	int		index;
+	int		array_index;
+	int		count;
 
-    sub_index = 0;
-    words = ft_strslen(s, c);
-    array = malloc(sizeof(char *) * (words + 1));
-    s_index = 0;
-    array_index = 0;
-    while (array_index < words)
-    {
-        array[array_index] = malloc(sizeof(char *) * word_len(s, s_index, c));
-        while (s[s_index] != c && s[s_index] != '\0')
-        {
-            array[array_index][sub_index] = s[s_index];
-            s_index++;
-            sub_index++;
-        }
-        s_index++;
-        sub_index = 0;
-        array_index++;
-    }
-    return (array);
+	count = 0;
+	array_index = 0;
+	index = 0;
+	while (s[index])
+	{
+		while (s[index] == c && s[index])
+			index++;
+		if (s[index])
+		{
+			count = index;
+			while (s[index] && s[index] != c)
+				index++;
+			array[array_index] = ft_substr(s, count, index - count);
+			if (!array[array_index])
+				return (clean_array(array));
+			array_index++;
+		}
+	}
+	return (array);
 }
 
-/* int main()
+char	**ft_split(char const *s, char c)
 {
-    char sep[] = "-";
-    char str[] = "Bonjour-Louis";
-    char **array = ft_split(str, sep[0]);
+	int		words;
+	char	**array;
 
-    for (size_t i = 0; i < ft_strslen(str, sep[0]) + 1; i++)
-        printf("%s\n", array[i]);
-} */
+	words = ft_strslen(s, c);
+	array = ft_calloc((words + 1), sizeof(char *));
+	if (!array || !s)
+		return (NULL);
+	return (create_array((char *)s, c, array));
+}

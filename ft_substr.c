@@ -1,42 +1,37 @@
-#include <stdlib.h>
-int ft_strlen(const char *str, int start, int end)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: christophechouinard <christophechouinar    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 15:07:34 by christophec       #+#    #+#             */
+/*   Updated: 2023/01/19 16:01:44 by christophec      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int length;
-	int index;
+	size_t	index;
+	char	*ptr;
 
+	if (!s)
+		return (NULL);
+	if (start > (unsigned int)ft_strlen(s))
+		return (ft_strdup(""));
 	index = 0;
-	length = end + start;
-
-	while (str[start++] && start < length)
-		index++;
-
-	return (index);
-}
-
-char *ft_substr(char const *s, unsigned int start, size_t len)
-{
-	int length_to_copy; 
-	int index;
-	char *ptr; 
-
-	index = 0;
-	length_to_copy = ft_strlen(s, start, len);
-	ptr = malloc(sizeof(char *) * length_to_copy);
-
+	if (len > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	ptr = malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (NULL);
-
-	while (length_to_copy--)
+	while (index < len)
 	{
-		ptr[index++] = s[start++];
+		ptr[index] = s[index + start];
+		index++;
 	}
-	return(ptr);
+	ptr[index] = '\0';
+	return (ptr);
 }
-/* 
-#include <stdio.h>
-int main()
-{
-	char s1[] = "Micou Baba";
-	char *s2 = ft_substr(s1, 3, 45);
-	printf("%s\n", s2);
-} */

@@ -1,13 +1,16 @@
-int ft_isascii(int ch)
-{
-    return (ch >= 0 && ch <= 127);
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:10:16 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:10:21 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/* #include <stdio.h>
-#include <ctype.h>
-int main()
+int	ft_isascii(int ch)
 {
-    char str[] = "Bonjour¡";
-    printf("ft_isalpha: %d\n", ft_isascii(str[8]));
-    printf("isalpha: %d\n", isascii(str[8]));
-} */
+	return (ch >= 0 && ch <= 127);
+}

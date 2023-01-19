@@ -1,30 +1,31 @@
-#include <stddef.h>
-void *ft_memchr(const void *s, int c, size_t n)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:46:33 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:46:45 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    char *ptr;
+	const unsigned char	*ptr;
+	size_t				index;
 
-    ptr = (char *)s;
-
-    while (n--)
-    {
-        if (c == *ptr)
-            return (ptr);
-        ptr++;
-    }
-    return (NULL);
+	index = 0;
+	if (!s)
+		return (NULL);
+	ptr = (const unsigned char *)s;
+	while (index < n)
+	{
+		if ((unsigned char)c == ptr[index])
+			return ((void *)ptr + index);
+		index++;
+	}
+	return (NULL);
 }
-
-// #include <string.h>
-// #include <stdio.h>
-// int main()
-// {
-//     const char str[] = "Guy Jodoin";
-//     char ch[] = " ";
-//     char *ptr = ft_memchr(str, ch[0], 3);
-//     printf("%s\n", ptr);
-
-//     const char str2[] = "Guy Jodoin";
-//     char ch2[] = " ";
-//     char *ptr2 = memchr(str2, ch2[0], 3);
-//     printf("%s\n", ptr2);
-// }

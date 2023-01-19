@@ -1,13 +1,16 @@
-int ft_isprint(int ch)
-{
-    return ((ch >= 32 && ch <= 126));
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cchouina <cchouina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:11:10 by cchouina          #+#    #+#             */
+/*   Updated: 2023/01/17 11:12:04 by cchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/* #include <stdio.h>
-#include <ctype.h>
-int main()
+int	ft_isprint(int ch)
 {
-    char str = 127;
-    printf("ft_isalpha: %d\n", ft_isprint(str));
-    printf("isalpha: %d\n", isprint(str));
-} */
+	return ((ch >= 32 && ch <= 126));
+}
